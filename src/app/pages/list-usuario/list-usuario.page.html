@@ -1,24 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Lista de Usuario</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+    <ion-toolbar>
+      <ion-title>Lista de Usuário</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button color="danger" routerLink="/tabs/addUsuario"> 
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-
-      <ion-list *ngIf="usuarios | async as users">
-        <ion-item *ngFor="let user of users" routerLink="/tabs/perfilUsuario/{{user.key}}">
+      <ion-fab-button color="danger" routerLink="/tabs/addUsuario">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
+    <ion-list *ngIf="usuarios | async as users">
+  
+      <ion-item-sliding *ngFor="let user of users">
+        <ion-item-options side="start">
+          <ion-item-option (click)="remover()" expandable color="danger">Remover</ion-item-option>
+        </ion-item-options>
+  
+        <ion-item routerLink="/tabs/perfilUsuario/{{user.key}}">
           <ion-text>
             {{user.nome}} - {{user.email}}
           </ion-text>
           <ion-note> {{user.key}}</ion-note>
-        </ion-item> 
-      </ion-list>
-
-</ion-content>
+        </ion-item>
+  
+        <ion-item-options side="end">
+          <ion-item-option (click)="atualizar()" expandable>Atualizar</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  
+  </ion-content>

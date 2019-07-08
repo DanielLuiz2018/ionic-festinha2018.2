@@ -22,5 +22,5 @@ export class PerfilUsuarioPage implements OnInit {
     this.key = this.activeRouter.snapshot.paramMap.get("key");
     this.usuario = this.usuarioService.get(this.key);
   }
-
+  
 }
