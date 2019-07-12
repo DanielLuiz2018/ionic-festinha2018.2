@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
+import { EventoService } from '../services/evento.service';
 
 @Component({
   selector: 'app-tabs',
@@ -9,15 +10,22 @@ import { UsuarioService } from '../services/usuario.service';
 export class TabsPage {
 
   protected nuser: number = 0;
+  protected nev: number = 0;
 
   constructor(
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private eventoService: EventoService
   ) {
     this.usuarioService.getAll()
     .subscribe(
       res => this.nuser = res.length
       ,
       err => this.nuser = 0
+    ); this.eventoService.getAll()
+    .subscribe(
+      res => this.nev = res.length
+      ,
+      err => this.nev = 0
     )
   }
 

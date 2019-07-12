@@ -44,11 +44,38 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab3',
+      path: 'tab3',
         children: [
           {
             path: '',
             loadChildren: '../tab3/tab3.module#Tab3PageModule'
+          }
+        ]
+      },
+      {
+        path: 'listEvento',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/list-evento/list-evento.module#ListEventoPageModule'
+          }
+        ]
+      },
+      {
+        path: 'addEvento',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/add-evento/add-evento.module#AddEventoPageModule'
+          }
+        ]
+      },
+      {
+        path: 'perfilEvento/:key',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/perfil-evento/perfil-evento.module#PerfilEventoPageModule'
           }
         ]
       },
@@ -73,3 +100,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class TabsPageRoutingModule {}
+
+
