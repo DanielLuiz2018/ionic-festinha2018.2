@@ -27,4 +27,12 @@ export class UsuarioService {
   get(key: string){
     return this.db.object<Usuario>("usuario/" + key).valueChanges()
   }
+
+  update(usuario:Usuario, key: string) {
+    return this.db.object("usuario/" + key).update(usuario);
+  }
+
+  remove(key: string) {
+    return this.db.object("usuario/" + key).remove()
+  }
 }
