@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login-usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" name="email" [(ngModel)]="usuario.email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" name="pws" [(ngModel)]="pws" minlength="6" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-button type="submit" [disabled]="fc.invalid">Salvar</ion-button>
+      <ion-button type="reset" routerLink="/">Cancelar</ion-button>
+    </ion-item>
+  </form>
+ 
+    <ion-button expand="block" fill="outline" (click)="logout()" routerLink="/">
+      Sair
+    </ion-button>
+
+    <ion-button expand="block" fill="outline" (click)="loginWeb()" routerLink="/">
+      <ion-icon slot="start" name="logo-googleplus"></ion-icon>Entrar com o Google
+    </ion-button>
+  
+</ion-content>
