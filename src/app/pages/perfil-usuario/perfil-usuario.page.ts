@@ -12,6 +12,7 @@ export class PerfilUsuarioPage implements OnInit {
 
   protected usuario:any;
   private key:string;
+  preview: any;
 
   constructor(
     public usuarioService:UsuarioService,

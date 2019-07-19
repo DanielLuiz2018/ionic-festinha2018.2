@@ -4,7 +4,6 @@ import { auth } from 'firebase/app';
 import { MensagensService } from 'src/app/services/mensagens.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login-usuario',
   templateUrl: './login-usuario.page.html',

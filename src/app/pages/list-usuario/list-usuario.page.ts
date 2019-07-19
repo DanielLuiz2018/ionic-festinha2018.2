@@ -13,7 +13,7 @@ export class ListUsuarioPage implements OnInit {
 
   constructor(
     public usuarioService: UsuarioService,
-    public alertController: AlertController
+    public alertController: AlertController,
   ) { }
 
   ngOnInit() {
