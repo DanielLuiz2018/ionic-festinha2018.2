@@ -8,8 +8,7 @@ GoogleMapsEvent,
 GoogleMapOptions,
 CameraPosition,
 MarkerOptions,
-Marker,
-Environment
+Marker
 } from '@ionic-native/google-maps';
 
 @Component({
@@ -52,8 +51,7 @@ export class MapsPage implements OnInit {
    });
   }
  
-
-loadMap() {
+async loadMap() {
   let mapOptions: GoogleMapOptions = {
     camera: {
        target: {
@@ -63,7 +61,28 @@ loadMap() {
        zoom: 18,
        tilt: 30
      }
-  };
-  this.map = GoogleMaps.create('map_canvas', mapOptions);
+   };
+   this.map = GoogleMaps.create('map_canvas', mapOptions);
+  }
+
+  marker:Marker;
+  mapClick() { 
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
+      res=> {
+        if (this.marker) {
+        this.marker.setPosition(res[0]);
+      } else {
+        this.addMarket();
+      }
+    })
+  }
+
+  addMarket() {
+    this.marker = this.map.addMarkerSync({
+      position: {
+        lat:this.lat,
+        lng:this.lng
+      }
+    });
   }
 }
