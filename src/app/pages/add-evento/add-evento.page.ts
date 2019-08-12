@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { AngularFireAuth } from '@angular/fire/auth'
 
 import { Evento } from './../../model/evento';
 import { EventoService } from 'src/app/services/evento.service';
@@ -13,15 +15,31 @@ import { EventoService } from 'src/app/services/evento.service';
 export class AddEventoPage implements OnInit {
 
   public evento: Evento;
+  preview: any;
+  key: string;
 
   constructor(
     public alertController: AlertController,
     public router: Router,
     public eventoService: EventoService,
+    public activeRouter: ActivatedRoute,
+    private camera: Camera,
+    private afAuth:AngularFireAuth
   ) { }
 
   ngOnInit() {
     this.evento = new Evento;
+    this.preview = null;
+    this.key = this.activeRouter.snapshot.paramMap.get("key");
+    if (this.key) {
+      this.eventoService.get(this.key).subscribe(
+        res =>{
+         this.evento = res
+         this.preview = res.foto
+        },  
+        err => this.key = null
+      );
+    }
   }
 
   onSubmit(form) {

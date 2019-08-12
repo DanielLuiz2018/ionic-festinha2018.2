@@ -11,10 +11,20 @@
       <ion-input type="text" name="nome" [(ngModel)]="evento.nome" required></ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label position="floating">Tema</ion-label>
       <ion-input type="text" name="tema" [(ngModel)]="evento.tema" required></ion-input>
-    </ion-item>
+    </ion-item> -->
+
+    <ion-item>
+        <ion-label>Tema</ion-label>
+        <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+          <ion-select-option value="Legumes">Legumes</ion-select-option>
+          <ion-select-option value="Salada">Salada</ion-select-option>
+          <ion-select-option value="Almondega">Almondega</ion-select-option>
+          <ion-select-option value="Batata">Batata</ion-select-option>
+        </ion-select>
+      </ion-item>
 
     <ion-item>
       <ion-label position="floating">Data</ion-label>
